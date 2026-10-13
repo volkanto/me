@@ -3,19 +3,19 @@ export const profile = {
   name: 'Volkan',
   location: 'Berlin, Germany',
   role: 'Backend engineer',
-  intro: 'I’m Volkan, a backend engineer based in Berlin. I build dependable Java and Spring Boot systems, and open-source tools that make everyday work easier.',
-  hero: { title: ['Under the hood.', 'Out in the open.'], context: 'BACKEND ENGINEER / BERLIN, DE', note: 'Clear boundaries. Thoughtful trade-offs. Software built to be useful.' },
+  intro: 'I’m Volkan, a software engineer in Berlin. I work on Java and Spring Boot backends, and make small open-source tools for the tasks that keep getting in the way.',
+  hero: { title: ['Backends that behave.', 'Tools that get you moving.'], context: 'VOLKAN / SOFTWARE ENGINEER / BERLIN', note: 'Java. Spring Boot. Reliability. A healthy dislike of unnecessary complexity.' },
   github: 'https://github.com/volkanto',
   sponsors: 'https://github.com/sponsors/volkanto',
   // No invented address or inert form. Set a verified email to enable mailto contact.
   contact: { email: null as string | null, github: 'https://github.com/volkanto' },
-  about: 'I’m a backend engineer based in Berlin. I enjoy the work behind the interface: clear APIs, dependable services, and understanding what happens when things go wrong. Away from backend systems, I build small open-source tools to make everyday work easier.',
+  about: 'I’m Volkan. Berlin is home, backend engineering is my craft, and building useful tools is how I follow my curiosity. I like clear interfaces, boring failure modes, and being able to explain why a system works the way it does.',
 };
 export const projects = [
   {
     slug: 'rook-notes-lite', number: '01', name: 'Rook Notes Lite', kind: 'LOCAL-FIRST NOTES',
-    headline: 'A little space for your daily progress.',
-    description: 'Capture the day, keep track of tasks, and turn scattered notes into weekly and monthly summaries. Your notes stay in your browser.',
+    headline: 'Make today easier to remember.',
+    description: 'A private place to write down the day, track tasks, and look back at your week. Your browser keeps the notes; you keep control.',
     audience: 'For people who want a private, lightweight record of their work without setting up another cloud account.',
     stack: ['TypeScript', 'IndexedDB', 'Vite'],
     source: 'https://github.com/volkanto/rook-lite',
@@ -30,8 +30,8 @@ export const projects = [
   },
   {
     slug: 'yaba', number: '02', name: 'yaba', kind: 'GITHUB RELEASE CLI',
-    headline: 'Give the next release a little less ceremony.',
-    description: 'Prepare, preview, and create GitHub releases from your terminal, with generated release notes and optional Slack announcements.',
+    headline: 'Release notes shouldn’t be a side quest.',
+    description: 'Collect the changes, preview the release, and publish it from your terminal. Generated notes and optional Slack announcements help keep the workflow together.',
     audience: 'For maintainers and teams who want a repeatable GitHub release workflow.',
     stack: ['Node.js', 'GitHub API', 'CLI'],
     source: 'https://github.com/volkanto/yaba', live: null as string | null,
@@ -44,8 +44,8 @@ export const projects = [
   },
   {
     slug: 'launchr', number: '03', name: 'launchr', kind: 'BROWSER SHORTCUT CLI',
-    headline: 'From a few flags to the right page.',
-    description: 'Turn everyday browser destinations into reusable terminal commands. Define a URL template, pass typed flags, and open it in your browser.',
+    headline: 'Less hunting for the right tab.',
+    description: 'Turn the URLs you keep rebuilding into commands. Define a template, pass typed flags, and open the right page in your browser.',
     audience: 'For developers who repeatedly navigate to the same tools with different parameters.',
     stack: ['Node.js', 'JSON configuration', 'CLI'],
     source: 'https://github.com/volkanto/launchr', live: null as string | null,
@@ -58,14 +58,38 @@ export const projects = [
   },
 ];
 export const services = [
-  { title: 'Backend architecture reviews', problem: 'A service is getting harder to change, or a new system needs a clear starting point.', result: 'A focused review of boundaries, APIs, and trade-offs, with practical next steps.' },
-  { title: 'Reliability & performance', problem: 'Slow requests, fragile retries, or failures that are difficult to reproduce.', result: 'An investigation grounded in measurements, failure paths, and a prioritized improvement plan.' },
-  { title: 'Java & Spring Boot', problem: 'Your team needs another perspective on a backend implementation or design decision.', result: 'Hands-on guidance on service design, concurrency, and maintainable application code.' },
-  { title: 'Early-stage technical guidance', problem: 'You need to move forward without making the architecture more complex than the product.', result: 'Clear technical choices and a manageable path from a first version to what comes next.' },
+  {
+    id: 'architecture', title: 'Architecture & API decisions', choice: 'The architecture is getting tangled.',
+    problem: 'Changes touch too many services. Boundaries are blurry. The next decision feels bigger than it should.',
+    result: 'A focused review of service boundaries, APIs, and trade-offs, with a practical set of next steps.',
+    outcomes: ['A clearer map of responsibilities', 'API and boundary recommendations', 'A prioritized plan for the next changes'],
+    prompt: 'What does the system do, what is becoming harder to change, and what needs to stay stable?',
+  },
+  {
+    id: 'reliability', title: 'Reliability & performance', choice: 'Something is slow or unreliable.',
+    problem: 'Requests drag. Retries make things worse. A failure is easy to notice and hard to explain.',
+    result: 'An investigation grounded in measurements and failure paths, rather than another round of guessing.',
+    outcomes: ['A plan for useful measurements', 'A review of concurrency and failure handling', 'Prioritized reliability or performance changes'],
+    prompt: 'What behavior are you seeing, when does it happen, and what measurements or examples do you have?',
+  },
+  {
+    id: 'java', title: 'Java & Spring Boot', choice: 'We need another backend perspective.',
+    problem: 'Your team is weighing an implementation choice, reviewing application code, or working through a difficult backend problem.',
+    result: 'Hands-on technical guidance on service design, concurrency, and maintainable Java and Spring Boot code.',
+    outcomes: ['A focused code or design review', 'Discussion of concrete implementation options', 'Actionable recommendations for the team'],
+    prompt: 'What are you building in Java or Spring Boot, what decision is in front of you, and where would another perspective help?',
+  },
+  {
+    id: 'product', title: 'Early-stage product guidance', choice: 'We’re figuring out the first version.',
+    problem: 'The product needs to move forward. The backend needs enough structure to grow, without becoming a project of its own.',
+    result: 'Clear technical choices and a manageable path from a useful first version to what comes next.',
+    outcomes: ['A review of the first-version scope', 'Practical architecture and tooling choices', 'A path that leaves room to evolve'],
+    prompt: 'Who is the product for, what must the first version do, and which constraints matter most?',
+  },
 ];
 export const principles = [
-  { title: 'Make boundaries clear.', text: 'Services and APIs should be easy to understand, change, and maintain.' },
-  { title: 'Design for the unhappy path.', text: 'Retries, concurrency, and failure handling are part of the design from the beginning.' },
-  { title: 'Measure before optimizing.', text: 'Performance decisions should start with evidence and a useful question.' },
-  { title: 'Keep room to evolve.', text: 'Start with a simple architecture that can grow with the product’s needs.' },
+  { title: 'Make the next change easier.', text: 'Clear service boundaries and APIs leave fewer surprises for the person changing them next.' },
+  { title: 'Give failure a proper plan.', text: 'Timeouts, retries, concurrency, and failure handling belong in the design, not in a late-night workaround.' },
+  { title: 'Bring evidence to the argument.', text: 'A useful measurement beats a confident guess. I want to know what is actually slow before changing it.' },
+  { title: 'Leave out the extra machinery.', text: 'I prefer the simplest architecture that meets the product’s needs and leaves room for the next step.' },
 ];

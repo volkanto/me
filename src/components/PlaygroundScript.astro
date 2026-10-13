@@ -1,0 +1,66 @@
+<script>
+  function initializePlayground() {
+    const picker = document.querySelector<HTMLElement>('[data-project-picker]');
+    if (picker) {
+      const buttons = Array.from(picker.querySelectorAll<HTMLButtonElement>('[data-project-button]'));
+      const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-project-panel]'));
+      const status = document.querySelector<HTMLElement>('[data-preview-status]');
+      function selectProject(slug: string, announce = true) {
+        buttons.forEach(button => {
+          const active = button.dataset.projectButton === slug;
+          button.setAttribute('aria-pressed', String(active));
+          button.textContent = active ? 'Previewing' : 'Preview';
+          button.closest('article')?.classList.toggle('is-selected', active);
+        });
+        panels.forEach(panel => { panel.hidden = panel.dataset.projectPanel !== slug; });
+        if (announce && window.matchMedia('(max-width: 900px)').matches) {
+          const selected = panels.find(panel => panel.dataset.projectPanel === slug);
+          selected?.focus({ preventScroll: true });
+          document.getElementById('project-preview-stage')?.scrollIntoView({
+            block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+          });
+        }
+        if (announce && status) status.textContent = `Showing ${panels.find(panel => panel.dataset.projectPanel === slug)?.dataset.projectName} preview.`;
+      }
+      buttons.forEach(button => {
+        button.hidden = false;
+        button.addEventListener('click', () => selectProject(button.dataset.projectButton!));
+      });
+      selectProject(buttons[0].dataset.projectButton!, false);
+    }
+
+    const challengePanels = Array.from(document.querySelectorAll<HTMLElement>('[data-challenge-panel]'));
+    const challengeInputs = Array.from(document.querySelectorAll<HTMLInputElement>('[data-challenge-choice]'));
+    function selectChallenge(id: string, announce = true) {
+      challengePanels.forEach(panel => { panel.hidden = panel.dataset.challengePanel !== id; });
+      const selected = challengePanels.find(panel => panel.dataset.challengePanel === id);
+      const guidance = document.querySelector<HTMLElement>('[data-contact-guidance]');
+      if (guidance && selected) guidance.textContent = selected.dataset.prompt!;
+      const context = document.querySelector<HTMLElement>('[data-contact-context]');
+      if (context && selected) context.textContent = selected.dataset.title!;
+      const status = document.querySelector<HTMLElement>('[data-challenge-status]');
+      if (announce && status && selected) status.textContent = `${selected.dataset.title} selected. Engagement outline updated.`;
+    }
+    challengeInputs.forEach(input => {
+      input.disabled = false;
+      input.addEventListener('change', () => { if (input.checked) selectChallenge(input.value); });
+    });
+    if (challengePanels.length) selectChallenge(challengeInputs.find(input => input.checked)?.value || challengePanels[0].dataset.challengePanel!, false);
+    document.querySelectorAll<HTMLElement>('[data-enhanced-only]').forEach(element => { element.hidden = false; });
+    document.querySelectorAll<HTMLElement>('[data-static-only]').forEach(element => { element.hidden = true; });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-command]').forEach(button => {
+      button.hidden = false;
+      button.addEventListener('click', async () => {
+        const status = button.parentElement?.querySelector<HTMLElement>('[data-copy-status]');
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyCommand!);
+          if (status) status.textContent = 'Command copied.';
+        } catch {
+          if (status) status.textContent = 'Copy didn’t work here. You can select the command below.';
+        }
+      });
+    });
+  }
+  initializePlayground();
+</script>

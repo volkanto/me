@@ -12,7 +12,7 @@ const project = projects.find(project => project.slug === slug);
   <figcaption>Real application · illustrative notes in a local browser</figcaption>
 </figure> : slug === 'yaba' ? <div class="terminal" aria-label="yaba command example">
   <div class="terminal-top"><span class="mono">YABA / RELEASE WORKFLOW</span><span class="terminal-state mono">PREVIEW FIRST</span></div>
-  <div class="terminal-command"><span class="prompt" aria-hidden="true">$</span><pre><code>{project?.command}</code></pre></div>
+  <div class="copy-control"><button type="button" hidden data-copy-command={project?.command}>Copy command</button><span role="status" data-copy-status></span></div><div class="terminal-command"><span class="prompt" aria-hidden="true">$</span><pre><code>{project?.command}</code></pre></div>
   <div class="terminal-rule"></div>
   <span class="terminal-caption mono">AN EXCERPT FROM THE CLI’S HELP OUTPUT</span>
   <pre class="help-output"><code>yaba release preview  Preview release details without creating a GitHub
@@ -21,6 +21,7 @@ const project = projects.find(project => project.slug === slug);
 </div> : <div class="launchr-visual" aria-label="launchr example workflow">
   <div class="launchr-top"><span class="mono">ONE COMMAND. THE RIGHT DESTINATION.</span><Arrow external /></div>
   <ol class="workflow"><li><span class="mono">01</span><strong>Define a URL</strong><span>A reusable template</span></li><li><span class="mono">02</span><strong>Pass flags</strong><span>Typed & validated</span></li><li><span class="mono">03</span><strong>Open browser</strong><span>Go to the right page</span></li></ol>
+  <div class="copy-control"><button type="button" hidden data-copy-command={project?.command}>Copy command</button><span role="status" data-copy-status></span></div>
   <pre><code>{project?.command}</code></pre>
   <p>Repository example · custom Grafana configuration</p>
 </div>}

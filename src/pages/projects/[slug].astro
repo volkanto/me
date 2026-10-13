@@ -4,6 +4,7 @@ import Arrow from '../../components/Arrow.astro';
 import ProjectVisual from '../../components/ProjectVisual.astro';
 import { projects } from '../../content';
 import { withBase } from '../../urls';
+import PlaygroundScript from '../../components/PlaygroundScript.astro';
 export function getStaticPaths() { return projects.map(project => ({ params: { slug: project.slug }, props: { project } })); }
 const { project } = Astro.props;
 ---
@@ -15,4 +16,5 @@ const { project } = Astro.props;
     <div class="project-body"><div><span class="eyebrow">THE IDEA</span><h2>A useful tool,<br />a focused purpose.</h2></div><div><h3>The problem</h3><p>{project.problem}</p><h3>Who it’s for</h3><p>{project.audience}</p><h3>What it does</h3><ul class="capabilities">{project.capabilities.map(capability => <li>{capability}</li>)}</ul><h3>Under the hood</h3><p>{project.technical}</p><h3>Trade-offs & requirements</h3><p>{project.limitations}</p>{project.slug === 'rook-notes-lite' && !project.live && <p class="project-note">The repository documents lite.rooknotes.com as its production domain. Live availability could not be verified from this environment; you can find the source and local setup instructions on GitHub.</p>}</div></div>
     <div class="project-bottom"><div><span class="eyebrow">KEEP EXPLORING</span><h2>More useful little tools.</h2></div><div>{projects.filter(p => p.slug !== project.slug).map(p => <a class="text-link" href={withBase(`projects/${p.slug}/`)}>{p.name} <Arrow /></a>)}</div></div>
   </article>
+  <PlaygroundScript />
 </Layout>

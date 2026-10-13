@@ -1,6 +1,6 @@
 # Volkan’s personal website
 
-A static Astro + TypeScript website with locally hosted Space Grotesk and Manrope, responsive WebP imagery, and a small inline script for appearance preferences. No analytics or client-side framework. Includes the homepage and three project-detail pages.
+A static Astro + TypeScript website with locally hosted Space Grotesk and Manrope, responsive WebP imagery, and small scripts for appearance preferences and useful interactions. No analytics or client-side framework. Includes the homepage and three project-detail pages.
 
 ## Develop and preview
 
@@ -70,6 +70,14 @@ The header’s Theme selector offers System (the default), Light, and Dark. Syst
 
 Appearance initialization is in `src/components/ThemeScript.astro`; both palettes use centralized CSS tokens in `src/styles/global.css`. Product screenshots retain their actual application colors.
 
-## Visual identity
+## Design and interactions
 
-The site uses an engineering fieldbook direction: Space Grotesk display type, Manrope body text, restrained monospace labels, a small monogram, and warm paper/forest palettes. The hero puts backend engineering first, with a labeled conceptual request/retry diagram in `SystemSketch.astro`. The diagram explains a design principle; it does not claim to represent a project or client architecture. Rook has a spacious real-product spread, while yaba and launchr have different CLI/workflow presentations. All page layouts and theme tokens share `src/styles/global.css`.
+The current direction is an expressive developer playground: ink, lilac, lime, and apricot, with direct first-person copy and separate paths for engineering teams and developers. All profile, project, service, engagement, and contact-guidance data are in `src/content.ts`. Theme palettes and responsive styles are centralized in `src/styles/global.css`.
+
+`PlaygroundScript.astro` enhances the static page with:
+
+- Project previews while keeping all three summaries and source/detail links visible. On narrow screens, choosing Preview moves focus to the selected preview; a link returns to the tool list.
+- Copyable, verified CLI commands, with success shown only when clipboard writing succeeds and an honest error state otherwise.
+- Native radio controls for choosing a backend challenge. The engagement outline and contact guidance stay synchronized.
+
+Without JavaScript, all previews and service outlines remain readable, with enhancement controls hidden. No message is submitted, no analytics are added, and no input or clipboard contents are logged. `ThemeScript.astro` continues to provide System (default), Light, and Dark appearance. Together, the two inline scripts are approximately 4 KB before compression.

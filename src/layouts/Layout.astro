@@ -21,7 +21,7 @@ const home = Astro.url.pathname.replace(/\/$/, '') === withBase().replace(/\/$/,
     <title>{title}</title><meta name="description" content={description} />
     <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={manropeFont} as="font" type="font/woff2" crossorigin />
-    <meta name="theme-color" content="#f4f1e8" />
+    <meta name="theme-color" content="#f7f7f2" />
     <ThemeScript />
     <meta property="og:title" content={title} /><meta property="og:description" content={description} />
     <meta property="og:type" content="website" /><meta property="og:locale" content="en_GB" />
@@ -32,7 +32,7 @@ const home = Astro.url.pathname.replace(/\/$/, '') === withBase().replace(/\/$/,
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header wrap">
-      <a href={withBase()} class="wordmark" aria-label="Volkan — home"><span class="brand-mark" aria-hidden="true">v.</span><span>Volkan<span class="wordmark-dot">.</span></span></a>
+      <a href={withBase()} class="wordmark" aria-label="Volkan — home"><span class="brand-mark" aria-hidden="true">v<span class="brand-pixel"></span></span><span>Volkan<span class="wordmark-dot">.</span></span></a>
       <nav aria-label="Main navigation">
         <a href={home ? '#work' : withBase('#work')}>Work</a><a href={home ? '#consulting' : withBase('#consulting')}>Consulting</a><a href={home ? '#about' : withBase('#about')}>About</a><a href={home ? '#contact' : withBase('#contact')}>Contact</a>
         <a class="nav-github" href={profile.github}>GitHub <Arrow external /></a>
@@ -47,6 +47,6 @@ const home = Astro.url.pathname.replace(/\/$/, '') === withBase().replace(/\/$/,
       </div>
     </header>
     <main id="main" tabindex="-1"><slot /></main>
-    <footer class="site-footer wrap"><a class="wordmark" href={withBase()}>Volkan<span class="wordmark-dot">.</span></a><p>Thoughtful systems. Useful software.</p><span class="mono">BERLIN, DE · © {new Date().getFullYear()}</span><a href={profile.github}>GitHub <Arrow external /></a></footer>
+    <footer class="site-footer wrap"><a class="wordmark" href={withBase()}>Volkan<span class="wordmark-dot">.</span></a><p>Built with intent. Shared with everyone.</p><span class="mono">BERLIN, DE · © {new Date().getFullYear()}</span><a href={profile.github}>GitHub <Arrow external /></a></footer>
   </body>
 </html>

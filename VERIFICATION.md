@@ -69,3 +69,13 @@ Validation after the redesign:
 - Mobile Lighthouse performance-only lab run: 91 performance, FCP 0.9 s, LCP 1.3 s, CLS 0, TBT 340 ms. These are local lab measurements, not production field guarantees.
 
 Font licenses are also distributed under `public/licenses/`. The design diagram is explicitly a conceptual principle, not a client case study or a claim about a deployed project architecture.
+
+## Expressive developer playground
+
+This direction was selected by the site owner: a palette of ink, lilac, lime, and apricot; direct first-person copy; separate paths for teams and developers; and useful interactions rather than decorative motion.
+
+The project explorer keeps all project summaries and source/detail links visible while changing the real screenshot or verified CLI preview. On mobile, choosing a preview moves focus into it and provides a return link. Clipboard success appears only after a successful write; failure preserves the command and shows an honest alternative. Native radio controls select a potential consulting engagement and update the contact guidance. Without JavaScript, all project previews and all four engagement outlines remain readable.
+
+Production build: 13 checked files, zero errors or warnings. Browser checks passed at 360px, 768px, and 1440px in both themes: project selection, mobile focus order, clipboard success, challenge selection, contact synchronization, assets, and zero horizontal overflow. Axe found zero A/AA violations on the homepage at every size in both themes and on all three project-detail pages in both themes. Separate checks cover keyboard activation, radio arrow navigation, clipboard failure, reduced motion, and System/Light/Dark persistence and OS changes.
+
+Mobile Lighthouse performance-only run against the completed production preview (2026-10-13): performance 98, FCP 1.2 s, LCP 1.3 s, CLS 0, TBT 50 ms. These remain local lab results, not field guarantees. The theme and interaction scripts total approximately 4 KB before compression, with no new dependencies.
