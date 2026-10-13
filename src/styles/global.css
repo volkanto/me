@@ -58,7 +58,7 @@ button { font-family: var(--font); cursor: pointer; }
 .site-header nav a { min-height: 44px; display: inline-flex; align-items: center; gap: 5px; }
 .site-header nav a:hover { text-decoration: underline; text-underline-offset: 8px; }
 .nav-github { color: var(--muted); margin-left: 12px; }
-.theme-control { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; gap: 8px; min-width: 104px; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); color: var(--ink); font: 600 11px/1 var(--font); }
+.theme-control { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); color: var(--ink); font: 600 11px/1 var(--font); }
 .theme-control svg { width: 17px; height: 17px; }
 .theme-control:hover { border-color: var(--accent); color: var(--lilac-ink); background: var(--lilac); }
 .hero { padding-top: 32px; }

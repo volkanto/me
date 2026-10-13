@@ -23,7 +23,6 @@
       const labels = { system: 'System', light: 'Light', dark: 'Dark' };
       function syncControl() {
         const next = modes[(modes.indexOf(preference) + 1) % modes.length];
-        control.querySelector('[data-theme-label]').textContent = labels[preference];
         control.querySelectorAll('[data-theme-icon]').forEach(icon => {
           icon.hidden = icon.dataset.themeIcon !== preference;
         });

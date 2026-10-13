@@ -91,3 +91,9 @@ Production build: 14 checked files, zero errors or warnings. Visually inspected 
 The theme control is now one native button, cycling System → Light → Dark → System. Its icon and visible label identify the preference, and its accessible name describes the next action. Existing before-paint initialization and storage behavior remain intact.
 
 Production build passed with 14 checked files and zero errors or warnings. Browser checks at 360px, 768px, and 1440px in both themes passed for click/Enter/Space activation, visible focus, cycling, persisted choice, live system changes, reset to System, one visible icon, and absence of horizontal overflow or page errors. Axe found zero A/AA violations across all six homepage combinations. Project-page and cross-tab synchronization, blocked storage, and the JavaScript-disabled fallback passed. Production screenshots were visually reviewed on mobile, tablet, and desktop. No dependencies were added to the website.
+
+## Icon-only appearance button — 2026-10-14
+
+Removed the visible theme label and made the button 44 × 44px. The current mode still appears as a monitor, sun, or moon; the accessible name and native tooltip describe the current mode and next action. Cycling and persistence remain unchanged.
+
+Production build passed with no errors or warnings. Browser checks at 360px, 768px, and 1440px in both themes verified no visible button text, a single visible icon, keyboard activation/focus, all three modes, persistence, system changes, reset, and absence of overflow or page errors. Axe reported zero A/AA violations in all six homepage combinations. Project-page/cross-tab behavior, blocked storage, and no-JavaScript fallback passed. Mobile and desktop screenshots were visually reviewed.
