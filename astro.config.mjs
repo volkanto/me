@@ -3,5 +3,6 @@ export default defineConfig({
   site: process.env.SITE_URL || undefined,
   base: process.env.SITE_BASE || '/',
   output: 'static',
+  trailingSlash: 'always',
   devToolbar: { enabled: false },
 });

@@ -18,7 +18,7 @@ npm run build
 npm run preview -- --port 4322
 ```
 
-Build output is `dist/`, suitable for static hosting. No deployment has been performed. Scripts disable Astro telemetry so they work in this cloud machine without writing to the unavailable home directory.
+Build output is `dist/`, suitable for static hosting. GitHub Pages deployment is configured through the Actions workflow described below. Scripts disable Astro telemetry so they work in this cloud machine without writing to the unavailable home directory.
 
 ## Update content
 

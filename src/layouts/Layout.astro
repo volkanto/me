@@ -7,8 +7,9 @@ import Arrow from '../components/Arrow.astro';
 import { withBase } from '../urls';
 interface Props { title?: string; description?: string; }
 const { title = 'Volkan — Backend systems & useful open-source tools', description = profile.intro } = Astro.props;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : null;
-const home = Astro.url.pathname === withBase();
+const canonicalPath = `${Astro.url.pathname.replace(/\/$/, '')}/`;
+const canonical = Astro.site ? new URL(canonicalPath, Astro.site) : null;
+const home = Astro.url.pathname.replace(/\/$/, '') === withBase().replace(/\/$/, '');
 ---
 <!doctype html>
 <html lang="en">

@@ -39,10 +39,12 @@ Rook’s live HTML was retrieved with TLS verification. Its HTTPS product domain
 
 ## Handoff
 
-Development preview: port 4321. Production preview: port 4322. No public deployment performed.
+Development preview: port 4321. Production preview: port 4322. The initial implementation was validated locally; GitHub Pages deployment was subsequently authorized and configured.
 
 Content: `src/content.ts`. Contact: verified GitHub profile until a real email is configured. Public-domain configuration: `SITE_URL`. Installation, startup, and required Rook domain access were saved in the cloud environment configuration draft; review/save and publish the environment snapshot in environment settings. Publishing the environment is separate from deploying the website.
 
 ## GitHub Pages preparation
 
 The production build also passes with `SITE_URL=https://volkanto.github.io` and `SITE_BASE=/me`. Chromium checks at 360px and 1440px cover all four pages under `/me/`, loaded images and assets, internal navigation, canonical URLs, social imagery, sitemap, and robots. The Actions workflow uses frozen dependencies and official configure/upload/deploy Pages actions. GitHub API access and the live Pages endpoint remain subject to the environment network policy; a local build does not confirm a public deployment.
+
+The first Pages workflow completed successfully: https://github.com/volkanto/me/actions/runs/38458569461. The published site returned HTTPS 200 at https://volkanto.github.io/me/. A subsequent commit normalizes trailing-slash canonical URLs.
