@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+import rook from '../assets/rook-screen.png';
+const { slug, detail = false } = Astro.props;
+---
+{slug === 'rook-notes-lite' ? <figure class:list={['rook-visual', { 'detail-visual': detail }]}>
+  <div class="browser-bar"><span class="browser-dots" aria-hidden="true">● ● ●</span><span>Rook Notes Lite</span><span class="browser-note">YOUR NOTES, YOUR DEVICE</span></div>
+  <Image src={rook} widths={[640, 960, 1440]} sizes={detail ? '(max-width: 760px) 100vw, 1056px' : '(max-width: 760px) 100vw, 720px'} alt="Rook Notes Lite application showing two daily Markdown notes, task checkboxes, tags, and navigation" loading="lazy" quality={85} />
+  <figcaption>Real application · illustrative notes in a local browser</figcaption>
+</figure> : slug === 'yaba' ? <div class="terminal" aria-label="yaba command example">
+  <div class="terminal-top"><span class="mono">yaba / terminal</span><span aria-hidden="true">↗</span></div>
+  <pre><code><span class="prompt">$</span> yaba release preview
+  --repo my-repo</code></pre>
+  <div class="terminal-rule"></div>
+  <pre class="help-output"><code>yaba release preview  Preview release details without creating a GitHub
+                      release</code></pre>
+  <span class="mono terminal-caption">HELP OUTPUT · CAPTURED FROM THE CLI</span>
+</div> : <div class="launchr-visual" aria-label="launchr example workflow">
+  <span class="mono">A SHORTCUT TO YOUR WORKFLOW</span>
+  <div class="workflow"><span>Define a URL</span><span aria-hidden="true">→</span><span>Pass flags</span><span aria-hidden="true">→</span><span>Open browser</span></div>
+  <pre><code>launchr grafana -e production
+  -q error -t 5m</code></pre>
+  <p>Repository example · custom Grafana configuration</p>
+</div>}
