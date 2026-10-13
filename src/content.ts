@@ -2,8 +2,9 @@
 export const profile = {
   name: 'Volkan',
   location: 'Berlin, Germany',
-  role: 'Software engineer',
-  intro: 'I’m Volkan, a software engineer based in Berlin. I build backend systems and open-source tools that make everyday work a little easier.',
+  role: 'Backend engineer',
+  intro: 'I’m Volkan, a backend engineer based in Berlin. I build dependable Java and Spring Boot systems, and open-source tools that make everyday work easier.',
+  hero: { title: ['Under the hood.', 'Out in the open.'], context: 'BACKEND ENGINEER / BERLIN, DE', note: 'Clear boundaries. Thoughtful trade-offs. Software built to be useful.' },
   github: 'https://github.com/volkanto',
   sponsors: 'https://github.com/sponsors/volkanto',
   // No invented address or inert form. Set a verified email to enable mailto contact.

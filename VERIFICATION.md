@@ -54,3 +54,18 @@ The first Pages workflow completed successfully: https://github.com/volkanto/me/
 The production build passes with zero Astro/TypeScript errors or warnings. Both themes were visually reviewed at 360px, 768px, and 1440px. Axe reports zero A/AA violations on the homepage at all three widths in both themes, and on all project pages in both themes. Navigation, assets, and layout remain intact under `/me/`.
 
 Browser checks verify System as the initial selection, live operating-system appearance changes, explicit overrides, persistence after reload and between pages, resetting to System, cross-tab synchronization, keyboard selection, and visible focus. Switching continues to work with local storage blocked. Without JavaScript, CSS follows the system appearance and hides the override control. The shared inline appearance script is approximately 1.8 KB, with no new dependencies.
+
+## Backend engineering redesign
+
+The website now uses Space Grotesk display typography, a custom monogram, warm paper/forest palettes, a conceptual request/retry diagram, asymmetric project spreads, and service rows organized around problems and useful engagement results. The real product screenshot and verified CLI examples remain the visual evidence.
+
+Validation after the redesign:
+
+- Production build: 13 checked Astro files, zero errors or warnings, all four static pages generated.
+- Visual review: 360px, 768px, and 1440px in light and dark, plus mobile/desktop project-detail pages and CLI spreads. Tablet wrapping, mobile diagram legibility, and screenshot-caption contrast were corrected.
+- Axe: zero A/AA violations at all three homepage widths in both themes and on each project-detail page in both themes.
+- Theme checks: System default, live OS changes, persistence, reset, cross-tab synchronization, keyboard selection/focus, blocked storage, and JavaScript-disabled fallback pass.
+- Navigation/assets: `/me/` links, canonical URLs, social image, sitemap, robots, image loading, and absence of console errors verified.
+- Mobile Lighthouse performance-only lab run: 91 performance, FCP 0.9 s, LCP 1.3 s, CLS 0, TBT 340 ms. These are local lab measurements, not production field guarantees.
+
+Font licenses are also distributed under `public/licenses/`. The design diagram is explicitly a conceptual principle, not a client case study or a claim about a deployed project architecture.

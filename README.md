@@ -1,6 +1,6 @@
 # Volkan’s personal website
 
-A static Astro + TypeScript website with locally hosted Manrope, responsive WebP imagery, and a small inline script for appearance preferences. No analytics or client-side framework. Includes the homepage and three project-detail pages.
+A static Astro + TypeScript website with locally hosted Space Grotesk and Manrope, responsive WebP imagery, and a small inline script for appearance preferences. No analytics or client-side framework. Includes the homepage and three project-detail pages.
 
 ## Develop and preview
 
@@ -38,7 +38,7 @@ Features were checked against the public repositories’ READMEs and implementat
 - yaba: https://github.com/volkanto/yaba
 - launchr: https://github.com/volkanto/launchr
 
-The Rook screenshot was captured from the real locally running application with illustrative notes created exclusively for the screenshot. It contains no personal or employer data. The CLI command examples come from the repositories; yaba’s output is an excerpt from an actual `--help` run, not a simulated release result. Launchr’s Grafana command requires the repository’s example configuration. Font licensing is retained in the font package; Manrope uses the SIL Open Font License.
+The Rook screenshot was captured from the real locally running application with illustrative notes created exclusively for the screenshot. It contains no personal or employer data. The CLI command examples come from the repositories; yaba’s output is an excerpt from an actual `--help` run, not a simulated release result. Launchr’s Grafana command requires the repository’s example configuration. Font licensing is retained in the font package; Manrope and Space Grotesk use the SIL Open Font License.
 
 ## Validation
 
@@ -69,3 +69,7 @@ Future pushes to `main` deploy automatically. The `github-pages` deployment envi
 The header’s Theme selector offers System (the default), Light, and Dark. System follows `prefers-color-scheme`, including changes while the page is open. Explicit choices are stored under `volkan-theme` in local storage, restored before paint, and shared across tabs. Choosing System clears the override. If storage is blocked, switching still works for the current page. With JavaScript disabled, the site follows the operating system through CSS and hides the override control.
 
 Appearance initialization is in `src/components/ThemeScript.astro`; both palettes use centralized CSS tokens in `src/styles/global.css`. Product screenshots retain their actual application colors.
+
+## Visual identity
+
+The site uses an engineering fieldbook direction: Space Grotesk display type, Manrope body text, restrained monospace labels, a small monogram, and warm paper/forest palettes. The hero puts backend engineering first, with a labeled conceptual request/retry diagram in `SystemSketch.astro`. The diagram explains a design principle; it does not claim to represent a project or client architecture. Rook has a spacious real-product spread, while yaba and launchr have different CLI/workflow presentations. All page layouts and theme tokens share `src/styles/global.css`.

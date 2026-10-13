@@ -1,24 +1,26 @@
 ---
 import { Image } from 'astro:assets';
 import rook from '../assets/rook-screen.png';
+import { projects } from '../content';
+import Arrow from './Arrow.astro';
 const { slug, detail = false } = Astro.props;
+const project = projects.find(project => project.slug === slug);
 ---
 {slug === 'rook-notes-lite' ? <figure class:list={['rook-visual', { 'detail-visual': detail }]}>
-  <div class="browser-bar"><span class="browser-dots" aria-hidden="true">● ● ●</span><span>Rook Notes Lite</span><span class="browser-note">YOUR NOTES, YOUR DEVICE</span></div>
-  <Image src={rook} widths={[640, 960, 1440]} sizes={detail ? '(max-width: 760px) 100vw, 1056px' : '(max-width: 760px) 100vw, 720px'} alt="Rook Notes Lite application showing two daily Markdown notes, task checkboxes, tags, and navigation" loading="lazy" quality={85} />
+  <div class="browser-bar"><span class="browser-mark" aria-hidden="true">01</span><span>Rook Notes Lite</span><span class="browser-note">LOCAL APPLICATION VIEW</span></div>
+  <Image src={rook} widths={[640, 960, 1440]} sizes={detail ? '(max-width: 760px) 100vw, 1056px' : '(max-width: 900px) 100vw, 760px'} alt="Rook Notes Lite application showing two daily Markdown notes, task checkboxes, tags, and navigation" loading="lazy" quality={85} />
   <figcaption>Real application · illustrative notes in a local browser</figcaption>
 </figure> : slug === 'yaba' ? <div class="terminal" aria-label="yaba command example">
-  <div class="terminal-top"><span class="mono">yaba / terminal</span><span aria-hidden="true">↗</span></div>
-  <pre><code><span class="prompt">$</span> yaba release preview
-  --repo my-repo</code></pre>
+  <div class="terminal-top"><span class="mono">YABA / RELEASE WORKFLOW</span><span class="terminal-state mono">PREVIEW FIRST</span></div>
+  <div class="terminal-command"><span class="prompt" aria-hidden="true">$</span><pre><code>{project?.command}</code></pre></div>
   <div class="terminal-rule"></div>
+  <span class="terminal-caption mono">AN EXCERPT FROM THE CLI’S HELP OUTPUT</span>
   <pre class="help-output"><code>yaba release preview  Preview release details without creating a GitHub
                       release</code></pre>
-  <span class="mono terminal-caption">HELP OUTPUT · CAPTURED FROM THE CLI</span>
+  <p class="terminal-note">Review the release before making it public.</p>
 </div> : <div class="launchr-visual" aria-label="launchr example workflow">
-  <span class="mono">A SHORTCUT TO YOUR WORKFLOW</span>
-  <div class="workflow"><span>Define a URL</span><span aria-hidden="true">→</span><span>Pass flags</span><span aria-hidden="true">→</span><span>Open browser</span></div>
-  <pre><code>launchr grafana -e production
-  -q error -t 5m</code></pre>
+  <div class="launchr-top"><span class="mono">ONE COMMAND. THE RIGHT DESTINATION.</span><Arrow external /></div>
+  <ol class="workflow"><li><span class="mono">01</span><strong>Define a URL</strong><span>A reusable template</span></li><li><span class="mono">02</span><strong>Pass flags</strong><span>Typed & validated</span></li><li><span class="mono">03</span><strong>Open browser</strong><span>Go to the right page</span></li></ol>
+  <pre><code>{project?.command}</code></pre>
   <p>Repository example · custom Grafana configuration</p>
 </div>}
