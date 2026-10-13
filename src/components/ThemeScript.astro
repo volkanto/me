@@ -19,26 +19,34 @@
     document.addEventListener('DOMContentLoaded', () => {
       const control = document.querySelector('.theme-control');
       if (!control) return;
-      const choices = control.querySelectorAll('input[name="theme"]');
-      function syncChoices() {
-        choices.forEach(choice => { choice.checked = choice.value === preference; });
+      const modes = ['system', 'light', 'dark'];
+      const labels = { system: 'System', light: 'Light', dark: 'Dark' };
+      function syncControl() {
+        const next = modes[(modes.indexOf(preference) + 1) % modes.length];
+        control.querySelector('[data-theme-label]').textContent = labels[preference];
+        control.querySelectorAll('[data-theme-icon]').forEach(icon => {
+          icon.hidden = icon.dataset.themeIcon !== preference;
+        });
+        const description = `Color theme: ${labels[preference]}. Switch to ${labels[next]}.`;
+        control.setAttribute('aria-label', description);
+        control.setAttribute('title', description);
       }
-      syncChoices();
+      syncControl();
       control.hidden = false;
-      control.addEventListener('change', (event) => {
-        if (!event.target.matches('input[name="theme"]')) return;
-        preference = event.target.value;
+      control.addEventListener('click', () => {
+        preference = modes[(modes.indexOf(preference) + 1) % modes.length];
         try {
           if (preference === 'system') localStorage.removeItem(key);
           else localStorage.setItem(key, preference);
         } catch { /* A blocked store must not prevent changing the theme. */ }
+        syncControl();
         apply();
       });
       // Keep open tabs consistent when an explicit preference changes elsewhere.
       window.addEventListener('storage', (event) => {
         if (event.key !== key && event.key !== null) return;
         preference = ['light', 'dark'].includes(event.newValue) ? event.newValue : 'system';
-        syncChoices();
+        syncControl();
         apply();
       });
     });

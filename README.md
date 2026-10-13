@@ -66,7 +66,7 @@ Future pushes to `main` deploy automatically. The `github-pages` deployment envi
 
 ## Appearance
 
-The header’s three-way appearance control offers System (the default), Light, and Dark, with visible labels and monitor/sun/moon icons. The selected option has a contrasting fill and outline. Native radio controls support Tab and arrow-key navigation, and the compact mobile layout keeps every option visible. System follows `prefers-color-scheme`, including changes while the page is open. Explicit choices are stored under `volkan-theme` in local storage, restored before paint, and shared across tabs. Choosing System clears the override. If storage is blocked, switching still works for the current page. With JavaScript disabled, the site follows the operating system through CSS and hides the override control.
+The header has one appearance button. Each activation cycles System → Light → Dark → System; its icon and visible label show the current preference, while its accessible name explains the next action. It supports mouse, touch, Enter, and Space. System follows `prefers-color-scheme`, including changes while the page is open. Explicit choices are stored under `volkan-theme` in local storage, restored before paint, and shared across tabs. Choosing System clears the override. If storage is blocked, switching still works for the current page. With JavaScript disabled, the site follows the operating system through CSS and hides the override control.
 
 Appearance initialization is in `src/components/ThemeScript.astro`; both palettes use centralized CSS tokens in `src/styles/global.css`. Product screenshots retain their actual application colors.
 
