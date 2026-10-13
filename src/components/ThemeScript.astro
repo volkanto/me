@@ -1,0 +1,41 @@
+<script is:inline>
+  (() => {
+    const key = 'volkan-theme';
+    const root = document.documentElement;
+    const system = window.matchMedia('(prefers-color-scheme: dark)');
+    let preference = 'system';
+    try {
+      const saved = localStorage.getItem(key);
+      if (['system', 'light', 'dark'].includes(saved)) preference = saved;
+    } catch { /* Theme switching still works when storage is unavailable. */ }
+    function apply() {
+      const theme = preference === 'system' ? (system.matches ? 'dark' : 'light') : preference;
+      root.dataset.theme = theme;
+      root.dataset.themePreference = preference;
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#171e1a' : '#f6f5ef');
+    }
+    apply();
+    system.addEventListener('change', () => { if (preference === 'system') apply(); });
+    document.addEventListener('DOMContentLoaded', () => {
+      const select = document.getElementById('theme-choice');
+      if (!select) return;
+      select.value = preference;
+      select.closest('.theme-control').hidden = false;
+      select.addEventListener('change', () => {
+        preference = select.value;
+        try {
+          if (preference === 'system') localStorage.removeItem(key);
+          else localStorage.setItem(key, preference);
+        } catch { /* A blocked store must not prevent changing the theme. */ }
+        apply();
+      });
+      // Keep open tabs consistent when an explicit preference changes elsewhere.
+      window.addEventListener('storage', (event) => {
+        if (event.key !== key && event.key !== null) return;
+        preference = ['light', 'dark'].includes(event.newValue) ? event.newValue : 'system';
+        select.value = preference;
+        apply();
+      });
+    });
+  })();
+</script>

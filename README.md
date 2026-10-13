@@ -1,6 +1,6 @@
 # Volkan’s personal website
 
-A static Astro + TypeScript website with locally hosted Manrope, responsive WebP imagery, and no client-side JavaScript or analytics. Includes the homepage and three project-detail pages.
+A static Astro + TypeScript website with locally hosted Manrope, responsive WebP imagery, and a small inline script for appearance preferences. No analytics or client-side framework. Includes the homepage and three project-detail pages.
 
 ## Develop and preview
 
@@ -63,3 +63,9 @@ SITE_URL=https://volkanto.github.io SITE_BASE=/me npm run preview -- --port 4323
 ```
 
 Future pushes to `main` deploy automatically. The `github-pages` deployment environment must permit `main`, and Pages must be enabled in repository settings before the workflow can configure and deploy it.
+
+## Appearance
+
+The header’s Theme selector offers System (the default), Light, and Dark. System follows `prefers-color-scheme`, including changes while the page is open. Explicit choices are stored under `volkan-theme` in local storage, restored before paint, and shared across tabs. Choosing System clears the override. If storage is blocked, switching still works for the current page. With JavaScript disabled, the site follows the operating system through CSS and hides the override control.
+
+Appearance initialization is in `src/components/ThemeScript.astro`; both palettes use centralized CSS tokens in `src/styles/global.css`. Product screenshots retain their actual application colors.

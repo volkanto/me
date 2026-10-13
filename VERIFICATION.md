@@ -1,6 +1,6 @@
 # Verification — 2026-10-13
 
-## Production and functional checks
+## Initial implementation checks (before appearance controls)
 
 - Frozen-lockfile installation (`npm ci`) and production build completed.
 - Astro/TypeScript: 10 checked files, zero errors, warnings, or hints.
@@ -13,7 +13,7 @@
 - Axe WCAG A/AA checks: zero violations on the homepage at all four widths and each project-detail page. Automated results do not establish certification.
 - Final-domain configuration tested in an isolated build directory using a reserved `.example` origin: four sitemap URLs, canonical metadata, and absolute social-image URL generated correctly. The delivered build omits canonicals and leaves the sitemap empty until `SITE_URL` is configured.
 
-## Lighthouse
+## Initial implementation Lighthouse
 
 Mobile lab runs against the production preview using Chromium 154:
 
@@ -48,3 +48,9 @@ Content: `src/content.ts`. Contact: verified GitHub profile until a real email i
 The production build also passes with `SITE_URL=https://volkanto.github.io` and `SITE_BASE=/me`. Chromium checks at 360px and 1440px cover all four pages under `/me/`, loaded images and assets, internal navigation, canonical URLs, social imagery, sitemap, and robots. The Actions workflow uses frozen dependencies and official configure/upload/deploy Pages actions. GitHub API access and the live Pages endpoint remain subject to the environment network policy; a local build does not confirm a public deployment.
 
 The first Pages workflow completed successfully: https://github.com/volkanto/me/actions/runs/38458569461. The published site returned HTTPS 200 at https://volkanto.github.io/me/. A subsequent commit normalizes trailing-slash canonical URLs.
+
+## Light, dark, and system appearance
+
+The production build passes with zero Astro/TypeScript errors or warnings. Both themes were visually reviewed at 360px, 768px, and 1440px. Axe reports zero A/AA violations on the homepage at all three widths in both themes, and on all project pages in both themes. Navigation, assets, and layout remain intact under `/me/`.
+
+Browser checks verify System as the initial selection, live operating-system appearance changes, explicit overrides, persistence after reload and between pages, resetting to System, cross-tab synchronization, keyboard selection, and visible focus. Switching continues to work with local storage blocked. Without JavaScript, CSS follows the system appearance and hides the override control. The shared inline appearance script is approximately 1.8 KB, with no new dependencies.
