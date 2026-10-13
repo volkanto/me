@@ -58,9 +58,14 @@ button { font-family: var(--font); cursor: pointer; }
 .site-header nav a { min-height: 44px; display: inline-flex; align-items: center; gap: 5px; }
 .site-header nav a:hover { text-decoration: underline; text-underline-offset: 8px; }
 .nav-github { color: var(--muted); margin-left: 12px; }
-.theme-control { display: flex; align-items: center; gap: 8px; }
-.theme-control label { font: 9px var(--mono); color: var(--muted); }
-.theme-control select { min-height: 44px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink); background: var(--soft); padding: 0 8px; font: 500 11px var(--font); cursor: pointer; }
+.theme-control { display: flex; flex-shrink: 0; gap: 3px; margin: 0; padding: 4px; min-width: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); }
+.theme-option { position: relative; cursor: pointer; }
+.theme-option input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.theme-option span { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 66px; min-height: 44px; padding: 0 9px; border: 1px solid transparent; border-radius: 8px; color: var(--muted); font: 600 11px/1 var(--font); }
+.theme-option svg { width: 16px; height: 16px; }
+.theme-option:hover span { color: var(--ink); background: var(--surface); }
+.theme-option input:checked + span { color: var(--lilac-ink); background: var(--lilac); border-color: var(--accent); }
+.theme-option input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 3px; }
 .hero { padding-top: 32px; }
 .hero-topline { display: flex; justify-content: space-between; align-items: center; color: var(--muted); }
 .hero-topline > span:first-child { display: flex; align-items: center; gap: 10px; }
@@ -244,7 +249,7 @@ button { font-family: var(--font); cursor: pointer; }
   .site-header { gap: 24px; }
   .site-header nav { gap: 20px; }
   .nav-github { margin-left: 0; }
-  .theme-control label { display: none; }
+  .theme-option span { flex-direction: column; gap: 4px; min-width: 46px; padding-inline: 5px; font-size: 9px; }
   .hero h1 { font-size: 72px; }
   .hero-bottom { gap: 40px; grid-template-columns: 1fr 1.5fr; }
   .visitor-path { padding: 20px; }
@@ -293,13 +298,18 @@ button { font-family: var(--font); cursor: pointer; }
   .contact-section h2 { font-size: 54px; }
   .contact-card { padding: 24px; }
 }
+@media (max-width: 900px) {
+  .site-header { flex-wrap: wrap; gap: 8px; padding-block: 12px 8px; }
+  .theme-control { margin-left: auto; }
+  .site-header nav { order: 2; width: 100%; justify-content: space-between; margin-left: 0; }
+}
 @media (max-width: 760px) {
   .wrap { width: calc(100% - 40px); }
   .site-header { flex-wrap: wrap; align-content: center; min-height: 108px; gap: 8px; padding-block: 12px 8px; }
   .wordmark { font-size: 24px; gap: 8px; }
   .brand-mark { width: 32px; height: 32px; font-size: 25px; }
   .theme-control { order: 1; margin-left: auto; }
-  .theme-control label { display: block; }
+
   .site-header nav { order: 2; width: 100%; justify-content: space-between; margin-left: 0; gap: 8px; font-size: 11px; }
   .site-header nav svg { width: 13px; }
   .hero { padding-top: 26px; }

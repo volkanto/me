@@ -17,12 +17,17 @@
     apply();
     system.addEventListener('change', () => { if (preference === 'system') apply(); });
     document.addEventListener('DOMContentLoaded', () => {
-      const select = document.getElementById('theme-choice');
-      if (!select) return;
-      select.value = preference;
-      select.closest('.theme-control').hidden = false;
-      select.addEventListener('change', () => {
-        preference = select.value;
+      const control = document.querySelector('.theme-control');
+      if (!control) return;
+      const choices = control.querySelectorAll('input[name="theme"]');
+      function syncChoices() {
+        choices.forEach(choice => { choice.checked = choice.value === preference; });
+      }
+      syncChoices();
+      control.hidden = false;
+      control.addEventListener('change', (event) => {
+        if (!event.target.matches('input[name="theme"]')) return;
+        preference = event.target.value;
         try {
           if (preference === 'system') localStorage.removeItem(key);
           else localStorage.setItem(key, preference);
@@ -33,7 +38,7 @@
       window.addEventListener('storage', (event) => {
         if (event.key !== key && event.key !== null) return;
         preference = ['light', 'dark'].includes(event.newValue) ? event.newValue : 'system';
-        select.value = preference;
+        syncChoices();
         apply();
       });
     });
