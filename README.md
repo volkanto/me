@@ -88,7 +88,7 @@ Without JavaScript, all previews and service outlines remain readable, with enha
 
 ## Publishing notes
 
-The notebook lives at `/notes/` (`/me/notes/` on the current GitHub Pages site). It includes an archive, automatically generated topic pages, individual reading pages, a table of contents from `##` headings, and an RSS feed at `/notes/feed.xml`. Notes add no client-side JavaScript. The collection is empty until you publish real content; the starter file is an unpublished draft.
+The notebook lives at `/notes/` (`/me/notes/` on the current GitHub Pages site). It includes an archive, automatically generated topic pages, individual reading pages, a table of contents from `##` headings, and an RSS feed at `/notes/feed.xml`. Notes add no client-side JavaScript. Three clearly labeled demo notes are published to preview the archive and reading layout. Files beginning with `demo-` contain sample content, not personal case studies. Delete them or set `draft: true` to remove them from the site, topic archives, feed, and sitemap. The starter file remains an unpublished draft. The optional `demo: true` field adds a demo badge and reading-page notice; real notes default to `demo: false`.
 
 1. Copy `src/content/notes/first-note.md` to a descriptive lowercase filename, such as `retry-budgets.md`. The filename becomes the URL: `/notes/retry-budgets/`. Avoid names `index`, `topics`, and `feed.xml`.
 2. Replace the template with your own Markdown. Set `title`, `description`, `date`, and `tags` in its frontmatter. Topics use lowercase slugs such as `java`, `spring-boot`, and `reliability`. Optional `updated` adds an updated date. Use `##` and `###` for body headings; the page supplies the `h1`.

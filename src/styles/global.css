@@ -564,3 +564,5 @@ button { font-family: var(--font); cursor: pointer; }
   :root:not([data-theme]) .note-prose .astro-code span { color: var(--shiki-dark) !important; background-color: var(--shiki-dark-bg) !important; }
 }
 .note-prose pre:focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
+
+.demo-note-label { display: inline-block; margin-bottom: 14px; padding: 4px 8px; border-radius: 4px; background: var(--lilac); color: var(--lilac-ink); font-size: 9px; }

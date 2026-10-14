@@ -9,6 +9,7 @@ const notes = defineCollection({
     updated: z.coerce.date().optional(),
     tags: z.array(z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use lowercase topic slugs, such as spring-boot.')).max(6).default([]),
     draft: z.boolean().default(true),
+    demo: z.boolean().default(false),
   }),
 });
 export const collections = { notes };
