@@ -211,6 +211,11 @@ button { font-family: var(--font); cursor: pointer; }
 .contact-card > p { color: #e2dff0; font-size: 14px; margin-top: 20px; }
 .contact-card .button { background: #dfff76; border-color: #dfff76; color: #252918; width: 100%; margin-top: 24px; font-size: 12px; }
 .contact-card .button:hover { background: #eefcb9; border-color: #eefcb9; }
+.email-contact { margin-top: 28px; padding-top: 24px; border-top: 1px solid #68637e; }
+.email-contact > .mono { color: #cdc5ff; font-size: 9px; }
+.email-address { display: block; margin-top: 10px; font: 500 clamp(20px, 2.1vw, 27px)/1.4 var(--display); letter-spacing: -.04em; color: #f7f5ff; overflow-wrap: anywhere; }
+.email-address:hover { color: #dfff76; }
+.email-contact p.contact-note { color: #c3bfce; font-size: 11px; line-height: 1.7; margin-top: 18px; }
 .contact-card p.contact-note { color: #c3bfce; font-size: 10px; margin-top: 18px; }
 .site-footer { display: flex; align-items: center; gap: 32px; padding-block: 28px; }
 .site-footer .wordmark { font-size: 24px; gap: 0; }

@@ -1,0 +1,32 @@
+---
+import Arrow from './Arrow.astro';
+interface Props { email: string; isPlaceholder?: boolean; }
+const { email, isPlaceholder = false } = Astro.props;
+// Cloudflare's data-cfemail format: key byte followed by XOR-encoded UTF-8 bytes.
+// Pages has no Cloudflare edge decoder, so the script below decodes locally.
+const key = 0x73;
+const encoded = [key, ...new TextEncoder().encode(email)].map((byte, index) =>
+  (index === 0 ? byte : byte ^ key).toString(16).padStart(2, '0')
+).join('');
+---
+<div class="email-contact">
+  <span class="mono">{isPlaceholder ? 'EMAIL / DESIGN PREVIEW' : 'EMAIL / DIRECT CONTACT'}</span>
+  <a class="email-address __cf_email__" data-cfemail={encoded} data-email-address hidden></a>
+  <a class="button" data-cfemail={encoded} data-email-link hidden>{isPlaceholder ? 'Preview email draft' : 'Send me an email'} <Arrow /></a>
+  <p class="contact-note">{isPlaceholder ? 'Demo address only — this inbox does not receive inquiries. The button previews opening your email app.' : 'Opens your email app. Share what you’re building and where you need help.'}</p>
+  <noscript><p class="contact-note">Enable JavaScript to reveal the email address and open an email draft.</p></noscript>
+</div>
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('[data-cfemail]').forEach(link => {
+    const encoded = link.dataset.cfemail!;
+    const key = parseInt(encoded.slice(0, 2), 16);
+    const bytes = new Uint8Array((encoded.length - 2) / 2);
+    for (let index = 0; index < bytes.length; index++) {
+      bytes[index] = parseInt(encoded.slice(index * 2 + 2, index * 2 + 4), 16) ^ key;
+    }
+    const email = new TextDecoder().decode(bytes);
+    link.href = `mailto:${email}`;
+    if (link.hasAttribute('data-email-address')) link.textContent = email;
+    link.hidden = false;
+  });
+</script>

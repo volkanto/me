@@ -26,7 +26,11 @@ Edit `src/content.ts` for profile details, project descriptions and capabilities
 
 ## Contact and public domain
 
-No email address or submission backend was supplied. The contact section uses the verified GitHub profile, explicitly labeled as a temporary contact route. Set `profile.contact.email` to a verified address to enable email contact. A real form requires a separately configured submission service; there is no inert form or simulated success state.
+The contact card currently previews `volkan@example.com`, a reserved example address that does not receive inquiries. Replace `profile.contact.email` with your verified inbox and set `profile.contact.isPlaceholder` to `false` before accepting email inquiries. Set email to `null` to restore the GitHub fallback. No form or submission service is configured; email links open the visitor’s mail app.
+
+`src/components/EmailContact.astro` emits Cloudflare-compatible `data-cfemail` encoding and uses a small local decoder to reveal the address and mailto links. The raw email is absent from the generated HTML. This is reversible obfuscation, not encryption or a guarantee against scraping. GitHub Pages cannot serve Cloudflare’s `/cdn-cgi/` decoder, so the component deliberately does not request that endpoint. With JavaScript disabled, it explains how to reveal the address rather than linking to a missing decoder.
+
+Cloudflare’s managed Email Address Obfuscation is not active on `volkanto.github.io`. To use the managed service, configure a custom domain on GitHub Pages, proxy its DNS through Cloudflare, and enable Email Address Obfuscation for that zone. After setup, validate the rendered address and email links on the proxied domain; replace the local encoding/decoder with normal email markup for Cloudflare to rewrite and decode at the edge. No DNS or Cloudflare account settings have been changed.
 
 Set `SITE_URL` to the final HTTPS origin before a production build, for example via environment settings. `astro.config.mjs` uses it for canonicals and social-image URLs. The sitemap is generated from the project list; without a known origin it intentionally contains no URLs, and robots omits the sitemap directive. Never invent a domain. With `SITE_URL` configured, rebuild and check `dist/sitemap.xml` and page metadata. `public/social.png` is the social preview image.
 

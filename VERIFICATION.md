@@ -97,3 +97,11 @@ Production build passed with 14 checked files and zero errors or warnings. Brows
 Removed the visible theme label and made the button 44 × 44px. The current mode still appears as a monitor, sun, or moon; the accessible name and native tooltip describe the current mode and next action. Cycling and persistence remain unchanged.
 
 Production build passed with no errors or warnings. Browser checks at 360px, 768px, and 1440px in both themes verified no visible button text, a single visible icon, keyboard activation/focus, all three modes, persistence, system changes, reset, and absence of overflow or page errors. Axe reported zero A/AA violations in all six homepage combinations. Project-page/cross-tab behavior, blocked storage, and no-JavaScript fallback passed. Mobile and desktop screenshots were visually reviewed.
+
+## Email contact design preview — 2026-10-14
+
+Replaced the contact card’s GitHub route with a prominent email address and mailto draft action. `volkan@example.com` is explicitly labeled as a design preview, not a working inbox. Configuration is centralized in `profile.contact.email` and `profile.contact.isPlaceholder`. Setting email to null retains the previous GitHub fallback.
+
+The component uses Cloudflare-compatible XOR/data-cfemail encoding and a small local decoder. The raw email is absent from generated HTML; no missing `/cdn-cgi/` script is requested. This is reversible obfuscation, not encryption or a scraping guarantee. Cloudflare’s managed edge service is not enabled on the GitHub Pages domain; it requires a Cloudflare-proxied custom domain. No domain or Cloudflare configuration was changed. The official documentation request returned HTTP 403 in this environment.
+
+Production build passed: 15 checked files, zero errors or warnings. Browser checks at 360px, 768px, and 1440px in light/dark verified decoded address, correct mailto targets, clear demo labeling, keyboard focus/order, consulting context updates, no overflow, no console/page errors, and no failed assets. Axe found zero A/AA violations across all six homepage combinations. The no-JavaScript explanation was verified, and mobile/desktop and no-JavaScript screenshots were visually reviewed. Email delivery was not tested: the address is a dummy and mailto delegates to the visitor’s email application.

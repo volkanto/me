@@ -7,8 +7,8 @@ export const profile = {
   hero: { title: ['Backends that behave.', 'Tools that get you moving.'], context: 'VOLKAN / SOFTWARE ENGINEER / BERLIN', note: 'Java. Spring Boot. Reliability. A healthy dislike of unnecessary complexity.' },
   github: 'https://github.com/volkanto',
   sponsors: 'https://github.com/sponsors/volkanto',
-  // No invented address or inert form. Set a verified email to enable mailto contact.
-  contact: { email: null as string | null, github: 'https://github.com/volkanto' },
+  // Design-preview address only. Replace with a verified inbox and set isPlaceholder to false.
+  contact: { email: 'volkan@example.com' as string | null, isPlaceholder: true, github: 'https://github.com/volkanto' },
   about: 'I’m Volkan. Berlin is home, backend engineering is my craft, and building useful tools is how I follow my curiosity. I like clear interfaces, boring failure modes, and being able to explain why a system works the way it does.',
 };
 export const projects = [
