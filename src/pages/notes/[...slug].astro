@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Arrow from '../../components/Arrow.astro';
+import { publishedNotes, formatDate, readingMinutes, topicLabel } from '../../notes';
+import { withBase } from '../../urls';
+export async function getStaticPaths() {
+  const notes = import.meta.env.DEV ? await getCollection('notes') : await publishedNotes();
+  return notes.map(note => ({ params: { slug: note.id }, props: { note } }));
+}
+const { note } = Astro.props;
+const { Content, headings } = await render(note);
+const contents = headings.filter(heading => heading.depth === 2);
+---
+<Layout title={`${note.data.title} — Volkan’s notes`} description={note.data.description} type="article" published={note.data.date} updated={note.data.updated}>
+  <article class="note-page wrap">
+    <a class="back-link" href={withBase('notes/')}><span aria-hidden="true">←</span> All notes</a>
+    {(note.data.draft || note.data.date.getTime() > Date.now()) && <p class="note-preview-notice">Unpublished preview — this note is excluded from the production site, archive, RSS, and sitemap.</p>}
+    <header class="note-heading"><span class="eyebrow">A NOTE FROM THE WORKBENCH</span><h1>{note.data.title}</h1><p class="note-deck">{note.data.description}</p><div class="note-byline mono"><span>BY VOLKAN</span><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><span>{readingMinutes(note)} MIN READ</span>{note.data.updated && <span>UPDATED <time datetime={note.data.updated.toISOString()}>{formatDate(note.data.updated)}</time></span>}</div><div class="note-topics">{note.data.tags.map(tag => <a href={withBase(`notes/topics/${tag}/`)}>{topicLabel(tag)}</a>)}</div></header>
+    <div class="note-reading-layout"><aside>{contents.length > 0 && <nav class="note-contents" aria-label="On this page"><span class="mono">IN THIS NOTE</span><ol>{contents.map(heading => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>}</aside><div class="note-prose"><Content /></div></div>
+    <footer class="note-ending"><p>A useful idea is worth passing on.</p><a class="text-link" href={withBase('notes/')}>Back to the notebook <Arrow /></a></footer>
+  </article>
+</Layout>

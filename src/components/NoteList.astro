@@ -1,0 +1,14 @@
+---
+import type { Note } from '../notes';
+import { formatDate, readingMinutes, topicLabel } from '../notes';
+import { withBase } from '../urls';
+import Arrow from './Arrow.astro';
+interface Props { notes: Note[]; }
+const { notes } = Astro.props;
+---
+<ol class="note-list">
+  {notes.map(note => <li>
+    <div class="note-list-meta mono"><time datetime={note.data.date.toISOString()}>{formatDate(note.data.date)}</time><span>{readingMinutes(note)} MIN READ</span></div>
+    <div class="note-list-copy"><h2><a href={withBase(`notes/${note.id}/`)}>{note.data.title} <Arrow /></a></h2><p>{note.data.description}</p><div class="note-topics">{note.data.tags.map(tag => <a href={withBase(`notes/topics/${tag}/`)}>{topicLabel(tag)}</a>)}</div></div>
+  </li>)}
+</ol>

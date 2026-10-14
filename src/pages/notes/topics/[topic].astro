@@ -1,0 +1,14 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NoteList from '../../../components/NoteList.astro';
+import { publishedNotes, topicLabel } from '../../../notes';
+import { withBase } from '../../../urls';
+export async function getStaticPaths() {
+  const notes = await publishedNotes();
+  return [...new Set(notes.flatMap(note => note.data.tags))].map(topic => ({ params: { topic }, props: { topic, notes: notes.filter(note => note.data.tags.includes(topic)) } }));
+}
+const { topic, notes } = Astro.props;
+---
+<Layout title={`${topicLabel(topic)} notes — Volkan`} description={`Volkan’s engineering notes about ${topicLabel(topic)}.`}>
+  <section class="notes-page wrap" aria-labelledby="topic-title"><a class="back-link" href={withBase('notes/')}><span aria-hidden="true">←</span> All notes</a><header class="topic-heading"><span class="eyebrow">FROM THE NOTEBOOK / TOPIC</span><h1 id="topic-title">{topicLabel(topic)}<span class="wordmark-dot">.</span></h1><p>{notes.length} {notes.length === 1 ? 'note' : 'notes'} on this subject.</p></header><NoteList notes={notes} /></section>
+</Layout>

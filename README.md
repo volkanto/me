@@ -85,3 +85,26 @@ The current direction is an expressive developer playground: ink, lilac, lime, a
 - Native radio controls for choosing a backend challenge. The engagement outline and contact guidance stay synchronized.
 
 Without JavaScript, all previews and service outlines remain readable, with enhancement controls hidden. No message is submitted, no analytics are added, and no input or clipboard contents are logged. `ThemeScript.astro` continues to provide System (default), Light, and Dark appearance. Together, the two inline scripts are approximately 4 KB before compression.
+
+## Publishing notes
+
+The notebook lives at `/notes/` (`/me/notes/` on the current GitHub Pages site). It includes an archive, automatically generated topic pages, individual reading pages, a table of contents from `##` headings, and an RSS feed at `/notes/feed.xml`. Notes add no client-side JavaScript. The collection is empty until you publish real content; the starter file is an unpublished draft.
+
+1. Copy `src/content/notes/first-note.md` to a descriptive lowercase filename, such as `retry-budgets.md`. The filename becomes the URL: `/notes/retry-budgets/`. Avoid names `index`, `topics`, and `feed.xml`.
+2. Replace the template with your own Markdown. Set `title`, `description`, `date`, and `tags` in its frontmatter. Topics use lowercase slugs such as `java`, `spring-boot`, and `reliability`. Optional `updated` adds an updated date. Use `##` and `###` for body headings; the page supplies the `h1`.
+3. Keep `draft: true` while writing. Run `npm run dev` and visit the note’s route to preview the draft with a clear unpublished banner. Drafts stay out of the archive, feed, and sitemap, including in development.
+4. Set `draft: false` and use a date on or before today when ready. Run `SITE_URL=https://volkanto.github.io SITE_BASE=/me npm run build`, then commit and push to `main`. The existing GitHub Actions workflow publishes it automatically.
+
+```yaml
+---
+title: "Your note’s title"
+description: "A short, useful summary for the archive and search previews."
+date: 2026-10-14
+tags: [backend, reliability]
+draft: true
+---
+```
+
+Drafts default to **true** when omitted. Future-dated entries remain unpublished until a build runs after their date; this is a static site, so there is no automatic scheduled publishing job. Dates use UTC consistently. Tags generate topic pages only when they contain published notes. Removing or renaming a file changes its URL; retain filenames for durable links. Markdown is rendered with Astro’s built-in syntax highlighting; keep long code examples short enough to read, and give image assets meaningful alt text and explicit dimensions. Do not put secrets or confidential details in draft files: drafts are excluded from the deployed site but still live in the repository.
+
+Edit notebook introductory copy in `writing` within `src/content.ts`; author individual notes in `src/content/notes/`. Layouts are in `src/pages/notes/`, the collection schema is in `src/content.config.ts`, and typography/spacing tokens remain in `src/styles/global.css`. `SITE_URL` is required for absolute RSS URLs and canonical metadata; the deployment workflow supplies it.

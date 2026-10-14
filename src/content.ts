@@ -93,3 +93,10 @@ export const principles = [
   { title: 'Bring evidence to the argument.', text: 'A useful measurement beats a confident guess. I want to know what is actually slow before changing it.' },
   { title: 'Leave out the extra machinery.', text: 'I prefer the simplest architecture that meets the product’s needs and leaves room for the next step.' },
 ];
+
+export const writing = {
+  title: ['Notes from', 'the workbench.'],
+  intro: 'A place for the things I learn while building: backend decisions, small tools, and the trade-offs behind useful software.',
+  emptyTitle: 'The notebook is open.',
+  emptyCopy: 'No notes published yet. In the meantime, the projects are a good place to see what I’m working on.',
+};
